@@ -21,6 +21,35 @@ class UserDatabaseRepository implements UserRepository {
 
     return user
   }
+
+  async findById(id: string): Promise<User | null> {
+    const user = await prisma.user.findUnique({
+      where: {
+        id,
+      },
+    })
+
+    return user
+  }
+
+  async update(id: string, user: UserDTO): Promise<User> {
+    const updatedUser = await prisma.user.update({
+      where: {
+        id,
+      },
+      data: user,
+    })
+
+    return updatedUser
+  }
+
+  async delete(id: string): Promise<void> {
+    await prisma.user.delete({
+      where: {
+        id,
+      },
+    })
+  }
 }
 
 export { UserDatabaseRepository }
