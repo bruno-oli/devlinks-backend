@@ -11,8 +11,6 @@ class CreateUserController {
   handle = async (req: Request, res: Response) => {
     const user = req.body
 
-    console.log(this)
-
     try {
       const createdUser = await this.createUserUseCase.execute(user)
 
